@@ -99,4 +99,14 @@ describe('Todo List Smart Contract', () => {
 				.withArgs(user1.address, 0)
 		})
 	})
+
+	describe('Update Todo Priority', () => {
+		it('Should update priority', async () => {
+			const updateTodoPriorityTx = await todoList.updatePriority(0, 2)
+
+			const todos = await todoList.getTodos()
+
+			expect(todos[0].priority).to.be.eq(2)
+		})
+	})
 })
