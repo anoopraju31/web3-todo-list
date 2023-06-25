@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ethers } from 'ethers'
-import { useSigner } from 'wagmi'
+import { useSigner, useContractEvent } from 'wagmi'
 import { abi } from '../abis/todoList'
 
 const useTodo = () => {
@@ -15,6 +15,16 @@ const useTodo = () => {
 		const data = await contract.getTodos()
 		setTodos(data)
 	}
+
+	useContractEvent({
+		address: process.env.REACT_APP_ADDRESS,
+		abi,
+		eventName: 'TodoCreate',
+		listener(log) {
+			console.log(log)
+			getTodos()
+		},
+	})
 
 	useEffect(() => {
 		if (signer) getTodos()
