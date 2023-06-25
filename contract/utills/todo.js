@@ -3,7 +3,7 @@ const getTimestamp = (date) => {
 	return Math.floor(d / 1000) + 3600
 }
 
-export const todos = [
+const todos = [
 	{
 		title: 'Buy groceries',
 		description: 'Buy milk, eggs, and bread',
@@ -17,3 +17,5 @@ export const todos = [
 		priority: 1,
 	},
 ]
+
+module.exports = todos
