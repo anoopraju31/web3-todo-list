@@ -21,6 +21,7 @@ contract TodoList {
     mapping(address => Todo[]) private todos;
 
     event TodoCreate(address _owner, uint _id);
+    event TitleUpdate(address _owner, uint _id);
 
     /**
      * @dev Modifier to check weather it is valid todo id oor not.
@@ -76,5 +77,21 @@ contract TodoList {
 
     function getTodosCount() public view returns (uint) {
         return todos[msg.sender].length;
+    }
+
+    /**
+     * @dev Update the title of a todo.
+     * @param _id The id of the todo.
+     * @param _title The new title of the todo.
+     */
+
+    function updateTitle(
+        uint _id,
+        string memory _title
+    ) public validTodoId(_id) {
+        todos[msg.sender][_id].title = _title;
+        todos[msg.sender][_id].lastUpdated = block.timestamp;
+
+        emit TitleUpdate(msg.sender, _id);
     }
 }
