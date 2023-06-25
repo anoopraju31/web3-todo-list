@@ -124,5 +124,11 @@ describe('Todo List Smart Contract', () => {
 
 			expect(todos[0].status).to.be.eq(true)
 		})
+
+		it('Should emit StatusToggle event', async () => {
+			await expect(await todoList.toggleStatus(0))
+				.to.emit(todoList, 'StatusToggle')
+				.withArgs(user1.address, 0)
+		})
 	})
 })
