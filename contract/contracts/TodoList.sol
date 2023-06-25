@@ -22,6 +22,7 @@ contract TodoList {
 
     event TodoCreate(address _owner, uint _id);
     event TitleUpdate(address _owner, uint _id);
+    event DescriptionUpdate(address _owner, uint _id);
 
     /**
      * @dev Modifier to check weather it is valid todo id oor not.
@@ -93,5 +94,20 @@ contract TodoList {
         todos[msg.sender][_id].lastUpdated = block.timestamp;
 
         emit TitleUpdate(msg.sender, _id);
+    }
+
+    /**
+     * @dev Update the description of a todo.
+     * @param _id The id of the todo.
+     * @param _description The new description of the todo.
+     */
+    function updateDescription(
+        uint _id,
+        string memory _description
+    ) public validTodoId(_id) {
+        todos[msg.sender][_id].description = _description;
+        todos[msg.sender][_id].lastUpdated = block.timestamp;
+
+        emit DescriptionUpdate(msg.sender, _id);
     }
 }
