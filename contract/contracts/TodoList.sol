@@ -23,6 +23,15 @@ contract TodoList {
     event TodoCreate(address _owner, uint _id);
 
     /**
+     * @dev Modifier to check weather it is valid todo id oor not.
+     * @param _id Id of a todo of the sender.
+     */
+    modifier validTodoId(uint _id) {
+        require(todos[msg.sender][_id].isPresent == true, "Invalid Todo Id");
+        _;
+    }
+
+    /**
      * @dev create a new todo
      * @param _title The title for the todo.
      * @param _description The description about the todo.
