@@ -49,5 +49,11 @@ describe('Todo List Smart Contract', () => {
 
 			expect(todo[0].title).to.be.eq('Buy groceries AJ stores')
 		})
+
+		it('Should emit TitleUpdate event', async () => {
+			await expect(todoList.updateTitle(0, 'Buy groceries AJ stores only'))
+				.to.emit(todoList, 'TitleUpdate')
+				.withArgs(user1.address, 0)
+		})
 	})
 })
