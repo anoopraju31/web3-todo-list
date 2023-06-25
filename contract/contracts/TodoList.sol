@@ -24,6 +24,7 @@ contract TodoList {
     event TitleUpdate(address _owner, uint _id);
     event DescriptionUpdate(address _owner, uint _id);
     event TargetTimeUpdate(address _owner, uint _id);
+    event PriorityUpdate(address _owner, uint _id);
 
     /**
      * @dev Modifier to check weather it is valid todo id oor not.
@@ -41,7 +42,6 @@ contract TodoList {
      * @param _targetTime The target time for the todo.
      * @param _priority The priority for the todo.
      */
-
     function createTodo(
         string memory _title,
         string memory _description,
@@ -67,7 +67,6 @@ contract TodoList {
      * @dev Get the todos of the user.
      * @return Todo[] The list of todos of the sender.
      */
-
     function getTodos() public view returns (Todo[] memory) {
         return todos[msg.sender];
     }
@@ -76,7 +75,6 @@ contract TodoList {
      * @dev Get the count of todos of the user.
      * @return count The count of todos of the sender.
      */
-
     function getTodosCount() public view returns (uint) {
         return todos[msg.sender].length;
     }
@@ -86,7 +84,6 @@ contract TodoList {
      * @param _id The id of the todo.
      * @param _title The new title of the todo.
      */
-
     function updateTitle(
         uint _id,
         string memory _title
@@ -125,5 +122,17 @@ contract TodoList {
         todos[msg.sender][_id].lastUpdated = block.timestamp;
 
         emit TargetTimeUpdate(msg.sender, _id);
+    }
+
+    /**
+     * @dev Update the priority of a todo.
+     * @param _id The id of the todo.
+     * @param _priority The new priority of the todo.
+     */
+    function updatePriority(uint _id, uint8 _priority) public validTodoId(_id) {
+        todos[msg.sender][_id].priority = _priority;
+        todos[msg.sender][_id].lastUpdated = block.timestamp;
+
+        emit PriorityUpdate(msg.sender, _id);
     }
 }
