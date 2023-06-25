@@ -108,5 +108,11 @@ describe('Todo List Smart Contract', () => {
 
 			expect(todos[0].priority).to.be.eq(2)
 		})
+
+		it('Should emit PriorityUpdate event', async () => {
+			await expect(await todoList.updatePriority(0, 3))
+				.to.emit(todoList, 'PriorityUpdate')
+				.withArgs(user1.address, 0)
+		})
 	})
 })
