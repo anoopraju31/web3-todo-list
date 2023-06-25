@@ -31,5 +31,10 @@ describe('Todo List Smart Contract', () => {
 			expect(todos[0].priority).to.be.eq(todo[0].priority)
 			expect(todos[0].status).to.be.eq(todo[0].false)
 		})
+
+		it('Should return the todo count', async () => {
+			const todoCount = await todoList.getTodosCount()
+			expect(todoCount).to.be.eq(1)
+		})
 	})
 })
