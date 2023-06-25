@@ -92,5 +92,11 @@ describe('Todo List Smart Contract', () => {
 
 			expect(todo[0].targetTime).to.be.eq(1687761892)
 		})
+
+		it('Should emit TitleUpdate event', async () => {
+			await expect(await todoList.updateTargetTime(0, 1687848292))
+				.to.emit(todoList, 'TargetTimeUpdate')
+				.withArgs(user1.address, 0)
+		})
 	})
 })
