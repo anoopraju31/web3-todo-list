@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Error, Home, Login } from './pages'
-import Navbar from './components/Navbar'
+import { Navbar } from './components'
 
 const App = () => {
 	return (
