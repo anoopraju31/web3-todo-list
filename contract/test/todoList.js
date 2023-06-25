@@ -37,4 +37,17 @@ describe('Todo List Smart Contract', () => {
 			expect(todoCount).to.be.eq(1)
 		})
 	})
+
+	describe('Update Title', () => {
+		it('Should update the title of todo', async () => {
+			const updateTodoTitleTx = await todoList.updateTitle(
+				0,
+				'Buy groceries AJ stores',
+			)
+
+			const todo = await todoList.getTodos()
+
+			expect(todo[0].title).to.be.eq('Buy groceries AJ stores')
+		})
+	})
 })
