@@ -115,4 +115,14 @@ describe('Todo List Smart Contract', () => {
 				.withArgs(user1.address, 0)
 		})
 	})
+
+	describe('Update Todo Status', () => {
+		it('Should update status', async () => {
+			const updateTodoStatusTx = await todoList.toggleStatus(0)
+
+			const todos = await todoList.getTodos()
+
+			expect(todos[0].status).to.be.eq(true)
+		})
+	})
 })
