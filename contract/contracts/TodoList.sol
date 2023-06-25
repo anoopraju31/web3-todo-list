@@ -59,4 +59,13 @@ contract TodoList {
     function getTodos() public view returns (Todo[] memory) {
         return todos[msg.sender];
     }
+
+    /**
+     * @dev Get the count of todos of the user.
+     * @return count The count of todos of the sender.
+     */
+
+    function getTodosCount() public view returns (uint) {
+        return todos[msg.sender].length;
+    }
 }
