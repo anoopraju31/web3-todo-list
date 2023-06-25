@@ -25,6 +25,7 @@ contract TodoList {
     event DescriptionUpdate(address _owner, uint _id);
     event TargetTimeUpdate(address _owner, uint _id);
     event PriorityUpdate(address _owner, uint _id);
+    event StatusToggle(address _owner, uint _id);
 
     /**
      * @dev Modifier to check weather it is valid todo id oor not.
@@ -134,5 +135,16 @@ contract TodoList {
         todos[msg.sender][_id].lastUpdated = block.timestamp;
 
         emit PriorityUpdate(msg.sender, _id);
+    }
+
+    /**
+     * @dev Update the status of a todo.
+     * @param _id The id of the todo.
+     */
+    function toggleStatus(uint _id) public validTodoId(_id) {
+        todos[msg.sender][_id].status = !todos[msg.sender][_id].status;
+        todos[msg.sender][_id].lastUpdated = block.timestamp;
+
+        emit StatusToggle(msg.sender, _id);
     }
 }
