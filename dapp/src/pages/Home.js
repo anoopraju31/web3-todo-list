@@ -15,15 +15,18 @@ const Home = () => {
 	}, [signer])
 
 	return (
-		<div className='mt-20 min-h-screen bg-white dark:bg-gray-900 '>
-			{todos?.map((todo) => (
-				<Card
-					title={todo.title}
-					description={todo.description}
-					createdTime={Number(todo.createdTime._hex)}
-					targetTime={Number(todo.targetTime._hex)}
-				/>
-			))}
+		<div className='pt-20 px-0 md:px-8 min-h-screen bg-white dark:bg-gray-900 '>
+			<div className='max-w-screen-2xl mx-auto py-4 px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+				{todos?.map((todo) => (
+					<Card
+						key={todo.createdTime._hex}
+						title={todo.title}
+						description={todo.description}
+						createdTime={Number(todo.createdTime._hex)}
+						targetTime={Number(todo.targetTime._hex)}
+					/>
+				))}
+			</div>
 		</div>
 	)
 }
