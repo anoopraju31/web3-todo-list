@@ -80,4 +80,17 @@ describe('Todo List Smart Contract', () => {
 				.withArgs(user1.address, 0)
 		})
 	})
+
+	describe('Update Todo Target Time', () => {
+		it('Should update target time', async () => {
+			const updateTodoTargetTimeTx = await todoList.updateTargetTime(
+				0,
+				1687761892,
+			)
+
+			const todo = await todoList.getTodos()
+
+			expect(todo[0].targetTime).to.be.eq(1687761892)
+		})
+	})
 })
