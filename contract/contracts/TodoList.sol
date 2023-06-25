@@ -50,4 +50,13 @@ contract TodoList {
 
         emit TodoCreate(msg.sender, todos[msg.sender].length);
     }
+
+    /**
+     * @dev Get the todos of the user.
+     * @return Todo[] The list of todos of the sender.
+     */
+
+    function getTodos() public view returns (Todo[] memory) {
+        return todos[msg.sender];
+    }
 }
