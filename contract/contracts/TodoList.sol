@@ -23,6 +23,7 @@ contract TodoList {
     event TodoCreate(address _owner, uint _id);
     event TitleUpdate(address _owner, uint _id);
     event DescriptionUpdate(address _owner, uint _id);
+    event TargetTimeUpdate(address _owner, uint _id);
 
     /**
      * @dev Modifier to check weather it is valid todo id oor not.
@@ -109,5 +110,20 @@ contract TodoList {
         todos[msg.sender][_id].lastUpdated = block.timestamp;
 
         emit DescriptionUpdate(msg.sender, _id);
+    }
+
+    /**
+     * @dev Update the target time of a todo.
+     * @param _id The id of the todo.
+     * @param _targetTime The new target time of the todo.
+     */
+    function updateTargetTime(
+        uint _id,
+        uint _targetTime
+    ) public validTodoId(_id) {
+        todos[msg.sender][_id].targetTime = _targetTime;
+        todos[msg.sender][_id].lastUpdated = block.timestamp;
+
+        emit TargetTimeUpdate(msg.sender, _id);
     }
 }
