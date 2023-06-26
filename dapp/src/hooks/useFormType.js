@@ -1,9 +1,10 @@
 import { useState } from 'react'
 
 const useFormType = () => {
-	const [isEditForm, setIsEditForm] = useState(false)
+	const [isEditForm, setIsEditForm] = useState(true)
+	const [data, setData] = useState({})
 
-	return [isEditForm, setIsEditForm]
+	return [isEditForm, setIsEditForm, data, setData]
 }
 
 export default useFormType
