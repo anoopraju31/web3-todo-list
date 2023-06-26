@@ -13,6 +13,7 @@
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.14.0",
     "react-scripts": "5.0.1",
+    "react-tailwindcss-datepicker": "^1.6.3",
     "wagmi": "^0.7.15",
     "web-vitals": "^2.1.4"
   },

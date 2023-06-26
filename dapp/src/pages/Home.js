@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAccount, useSigner } from 'wagmi'
 import useTodo from '../hooks/useTodo'
-import { Card } from '../components'
+import { Card, Form } from '../components'
 
 const Home = () => {
 	const navigate = useNavigate()
@@ -28,6 +28,8 @@ const Home = () => {
 					/>
 				))}
 			</div>
+
+			<Form />
 		</div>
 	)
 }
