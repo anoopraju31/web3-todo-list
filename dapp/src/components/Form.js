@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { MdOutlineClose } from 'react-icons/md'
 import Datepicker from 'react-tailwindcss-datepicker'
-import { useFormType } from '../hooks'
+import { useSelector } from 'react-redux'
 
 const Form = () => {
 	const [id, setId] = useState(0)
@@ -10,27 +10,33 @@ const Form = () => {
 	const [priority, setPriority] = useState(0)
 	const [status, setStatus] = useState(true)
 	const [targetDate, setTargetDate] = useState({
-		startDate: new Date(),
-		endDate: new Date().setMonth(11),
+		startDate: null,
+		endDate: null,
 	})
 
-	const { isEditForm, data } = useFormType()
+	const isEditForm = useSelector((state) => state.form.isEditForm)
+	const data = useSelector((state) => state.form.todo)
 
 	const handleValueChange = (newValue) => {
+		console.log(newValue)
 		setTargetDate(newValue)
 	}
 
 	useEffect(() => {
 		if (isEditForm === true) {
-			console.log('hello')
 			setId(data.id)
 			setTitle(data.title)
 			setDescription(data.description)
 			setPriority(data.priority)
-			setTargetDate(data.targetDate)
+			setTargetDate({
+				startDate: data.targetTime,
+				endDate: data.targetTime,
+			})
 			setStatus(data.status)
+
+			console.log(data)
 		}
-	}, [isEditForm])
+	}, [isEditForm, data])
 
 	return (
 		<section className='p-6 relative bg-white dark:bg-gray-900'>
@@ -105,6 +111,7 @@ const Form = () => {
 						useRange={false}
 						value={targetDate}
 						onChange={handleValueChange}
+						displayFormat={'DD/MM/YYYY'}
 					/>
 				</div>
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import { FaRegEdit } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
 import { cardBackground } from '../utiils/cardBackground'
+import { addTodoToEdit, switchToEditForm } from '../features/formSlice'
 
 const Card = ({
 	id,
@@ -19,9 +21,21 @@ const Card = ({
 	const target = `${targetDate.getDate()}/${
 		targetDate.getMonth() + 1
 	}/${targetDate.getFullYear()}`
+	const dispatch = useDispatch()
 
 	const handleEdit = () => {
 		// console.log('handle edit')
+		dispatch(switchToEditForm())
+		dispatch(
+			addTodoToEdit({
+				id,
+				title,
+				description,
+				targetTime: targetDate,
+				priority,
+				status,
+			}),
+		)
 	}
 
 	return (
