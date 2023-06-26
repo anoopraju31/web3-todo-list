@@ -26,6 +26,56 @@ const useTodo = () => {
 		},
 	})
 
+	useContractEvent({
+		address: process.env.REACT_APP_ADDRESS,
+		abi,
+		eventName: 'TitleUpdate',
+		listener(log) {
+			console.log(log)
+			getTodos()
+		},
+	})
+
+	useContractEvent({
+		address: process.env.REACT_APP_ADDRESS,
+		abi,
+		eventName: 'DescriptionUpdate',
+		listener(log) {
+			console.log(log)
+			getTodos()
+		},
+	})
+
+	useContractEvent({
+		address: process.env.REACT_APP_ADDRESS,
+		abi,
+		eventName: 'TargetTimeUpdate',
+		listener(log) {
+			console.log(log)
+			getTodos()
+		},
+	})
+
+	useContractEvent({
+		address: process.env.REACT_APP_ADDRESS,
+		abi,
+		eventName: 'PriorityUpdate',
+		listener(log) {
+			console.log(log)
+			getTodos()
+		},
+	})
+
+	useContractEvent({
+		address: process.env.REACT_APP_ADDRESS,
+		abi,
+		eventName: 'StatusToggle',
+		listener(log) {
+			console.log(log)
+			getTodos()
+		},
+	})
+
 	useEffect(() => {
 		if (signer) getTodos()
 		else setTodos([])
