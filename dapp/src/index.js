@@ -5,7 +5,9 @@ import { chain, configureChains, createClient, WagmiConfig } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
+import { store } from './app/store'
 import App from './App'
 
 import '@rainbow-me/rainbowkit/styles.css'
@@ -33,9 +35,11 @@ root.render(
 	<React.StrictMode>
 		<WagmiConfig client={wagmiClient}>
 			<RainbowKitProvider chains={chains} coolMode>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
+				<Provider store={store}>
+					<BrowserRouter>
+						<App />
+					</BrowserRouter>
+				</Provider>
 			</RainbowKitProvider>
 		</WagmiConfig>
 	</React.StrictMode>,
