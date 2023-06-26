@@ -14,14 +14,15 @@ const Form = () => {
 		endDate: new Date().setMonth(11),
 	})
 
-	const [isEditForm, data] = useFormType()
+	const { isEditForm, data } = useFormType()
 
 	const handleValueChange = (newValue) => {
 		setTargetDate(newValue)
 	}
 
 	useEffect(() => {
-		if (isEditForm) {
+		if (isEditForm === true) {
+			console.log('hello')
 			setId(data.id)
 			setTitle(data.title)
 			setDescription(data.description)
@@ -29,7 +30,7 @@ const Form = () => {
 			setTargetDate(data.targetDate)
 			setStatus(data.status)
 		}
-	}, [isEditForm, data])
+	}, [isEditForm])
 
 	return (
 		<section className='p-6 relative bg-white dark:bg-gray-900'>
@@ -57,6 +58,7 @@ const Form = () => {
 					type='text'
 					id='title'
 					value={title}
+					onChange={(e) => setTitle(e.target.value)}
 					className={
 						'border border-gray-300 dark:border-gray-600 focus:ring-[3px] focus:ring-blue-500/20 bg-white dark:bg-slate-800 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400'
 					}
@@ -80,6 +82,7 @@ const Form = () => {
 						'border border-gray-300 dark:border-gray-600 focus:ring-[3px] focus:ring-blue-500/20 bg-white dark:bg-slate-800 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400'
 					}
 					value={description}
+					onChange={(e) => setDescription(e.target.value)}
 					placeholder='Description'
 					required
 					rows={8}
@@ -121,7 +124,7 @@ const Form = () => {
 								'border border-gray-300 dark:border-gray-600 focus:ring-[3px] focus:ring-blue-500/20 bg-white dark:bg-slate-800 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400'
 							}
 							value={priority}
-							defaultValue={0}>
+							onChange={(e) => setPriority(e.target.value)}>
 							<option value='0'> Choose priority </option>
 							<option value='1'> 1 </option>
 							<option value='2'> 2 </option>
