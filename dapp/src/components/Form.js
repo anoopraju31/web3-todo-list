@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { MdOutlineClose } from 'react-icons/md'
 import Datepicker from 'react-tailwindcss-datepicker'
+import { useFormType } from '../hooks'
 
 const Form = () => {
+	const [type] = useFormType()
 	const [value, setValue] = useState({
 		startDate: new Date(),
 		endDate: new Date().setMonth(11),
@@ -15,7 +17,7 @@ const Form = () => {
 	return (
 		<section className='p-6 relative bg-white dark:bg-gray-900'>
 			<h3 className='text-lg text-center font-medium mb-4 text-gray-900 dark:text-white'>
-				{/* {type} */}
+				{type ? 'Edit' : 'Create'}
 				Todo
 			</h3>
 
