@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { MdOutlineClose } from 'react-icons/md'
 import Datepicker from 'react-tailwindcss-datepicker'
 import { useSelector } from 'react-redux'
+import useEditTodo from '../hooks/useEditTodo'
+import { getTimestamp } from '../utiils/time'
 
 const Form = () => {
 	const [id, setId] = useState(0)
@@ -16,10 +18,19 @@ const Form = () => {
 
 	const isEditForm = useSelector((state) => state.form.isEditForm)
 	const data = useSelector((state) => state.form.todo)
+	const { editTodo } = useEditTodo()
 
 	const handleValueChange = (newValue) => {
 		console.log(newValue)
 		setTargetDate(newValue)
+	}
+
+	const handleSubmit = () => {
+		let targetTime = getTimestamp(targetDate.startDate)
+		// console.log(targetDate.startDate)
+		let todo = { id, title, description, targetTime, priority, status }
+		// console.log(todo)
+		editTodo(todo)
 	}
 
 	useEffect(() => {
@@ -34,7 +45,7 @@ const Form = () => {
 			})
 			setStatus(data.status)
 
-			console.log(data)
+			// console.log(data)
 		}
 	}, [isEditForm, data])
 
@@ -170,6 +181,7 @@ const Form = () => {
 			<div className='px-6 flex items-center justify-center'>
 				<button
 					type='submit'
+					onClick={handleSubmit}
 					className='text-white px-8 mx-auto bg-blue-700 hover:bg-blue-800 focus:ring-2 focus: focus:ring-blue-300 font-medium rounded-lg text-sm w-full md:w-auto  py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
 					Submit
 				</button>
