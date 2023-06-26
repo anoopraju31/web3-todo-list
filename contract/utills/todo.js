@@ -5,12 +5,14 @@ const getTimestamp = (date) => {
 
 const todos = [
 	{
+		id: 0,
 		title: 'Buy groceries',
 		description: 'Buy milk, eggs, and bread',
 		targetTime: getTimestamp('2023-06-27'),
 		priority: 1,
 	},
 	{
+		id: 1,
 		title: 'Call Kiran',
 		description: 'Enquire about the meetting',
 		targetTime: getTimestamp('2023-06-30'),

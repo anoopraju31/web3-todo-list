@@ -19,12 +19,13 @@ describe('Todo List Smart Contract', () => {
 				todoList.createTodo(title, description, targetTime, priority),
 			)
 				.to.emit(todoList, 'TodoCreate')
-				.withArgs(user1.address, 1)
+				.withArgs(user1.address, 0)
 		})
 
 		it('Should return all the todos of user1', async () => {
 			const todo = await todoList.getTodos()
 
+			expect(todos[0].id).to.be.eq(todo[0].id)
 			expect(todos[0].title).to.be.eq(todo[0].title)
 			expect(todos[0].description).to.be.eq(todo[0].description)
 			expect(todos[0].targetTime).to.be.eq(todo[0].targetTime)

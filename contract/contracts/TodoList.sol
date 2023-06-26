@@ -10,6 +10,7 @@ contract TodoList {
     struct Todo {
         string title;
         string description;
+        uint id;
         uint createdTime;
         uint lastUpdated;
         uint targetTime;
@@ -51,6 +52,7 @@ contract TodoList {
     ) public {
         Todo memory todo;
 
+        todo.id = todos[msg.sender].length;
         todo.title = _title;
         todo.description = _description;
         todo.createdTime = block.timestamp;
@@ -61,7 +63,7 @@ contract TodoList {
 
         todos[msg.sender].push(todo);
 
-        emit TodoCreate(msg.sender, todos[msg.sender].length);
+        emit TodoCreate(msg.sender, todo.id);
     }
 
     /**
