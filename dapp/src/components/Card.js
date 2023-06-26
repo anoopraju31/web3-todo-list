@@ -2,7 +2,14 @@ import React from 'react'
 import { FaRegEdit } from 'react-icons/fa'
 import { cardBackground } from '../utiils/cardBackground'
 
-const Card = ({ title, description, createdTime, targetTime, priority }) => {
+const Card = ({
+	id,
+	title,
+	description,
+	createdTime,
+	targetTime,
+	priority,
+}) => {
 	const createDate = new Date(createdTime * 1000)
 	const targetDate = new Date(targetTime * 1000)
 	const create = `${createDate.getDate()}/${

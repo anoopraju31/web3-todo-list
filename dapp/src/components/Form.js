@@ -4,6 +4,7 @@ import Datepicker from 'react-tailwindcss-datepicker'
 import { useFormType } from '../hooks'
 
 const Form = () => {
+	const [id, setId] = useState(0)
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
 	const [priority, setPriority] = useState(0)
@@ -21,6 +22,7 @@ const Form = () => {
 
 	useEffect(() => {
 		if (isEditForm) {
+			setId(data.id)
 			setTitle(data.title)
 			setDescription(data.description)
 			setPriority(data.priority)

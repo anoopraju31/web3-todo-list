@@ -1,5 +1,33 @@
 export const abi = [
 	{
+		inputs: [
+			{
+				internalType: 'string',
+				name: '_title',
+				type: 'string',
+			},
+			{
+				internalType: 'string',
+				name: '_description',
+				type: 'string',
+			},
+			{
+				internalType: 'uint256',
+				name: '_targetTime',
+				type: 'uint256',
+			},
+			{
+				internalType: 'uint8',
+				name: '_priority',
+				type: 'uint8',
+			},
+		],
+		name: 'createTodo',
+		outputs: [],
+		stateMutability: 'nonpayable',
+		type: 'function',
+	},
+	{
 		anonymous: false,
 		inputs: [
 			{
@@ -116,102 +144,6 @@ export const abi = [
 	{
 		inputs: [
 			{
-				internalType: 'string',
-				name: '_title',
-				type: 'string',
-			},
-			{
-				internalType: 'string',
-				name: '_description',
-				type: 'string',
-			},
-			{
-				internalType: 'uint256',
-				name: '_targetTime',
-				type: 'uint256',
-			},
-			{
-				internalType: 'uint8',
-				name: '_priority',
-				type: 'uint8',
-			},
-		],
-		name: 'createTodo',
-		outputs: [],
-		stateMutability: 'nonpayable',
-		type: 'function',
-	},
-	{
-		inputs: [],
-		name: 'getTodos',
-		outputs: [
-			{
-				components: [
-					{
-						internalType: 'string',
-						name: 'title',
-						type: 'string',
-					},
-					{
-						internalType: 'string',
-						name: 'description',
-						type: 'string',
-					},
-					{
-						internalType: 'uint256',
-						name: 'createdTime',
-						type: 'uint256',
-					},
-					{
-						internalType: 'uint256',
-						name: 'lastUpdated',
-						type: 'uint256',
-					},
-					{
-						internalType: 'uint256',
-						name: 'targetTime',
-						type: 'uint256',
-					},
-					{
-						internalType: 'uint8',
-						name: 'priority',
-						type: 'uint8',
-					},
-					{
-						internalType: 'bool',
-						name: 'status',
-						type: 'bool',
-					},
-					{
-						internalType: 'bool',
-						name: 'isPresent',
-						type: 'bool',
-					},
-				],
-				internalType: 'struct TodoList.Todo[]',
-				name: '',
-				type: 'tuple[]',
-			},
-		],
-		stateMutability: 'view',
-		type: 'function',
-	},
-	{
-		inputs: [],
-		name: 'getTodosCount',
-		outputs: [
-			{
-				internalType: 'uint256',
-				name: '',
-				type: 'uint256',
-			},
-		],
-		stateMutability: 'view',
-		type: 'function',
-	},
-	{
-		inputs: [
-			{
 				internalType: 'uint256',
 				name: '_id',
 				type: 'uint256',
@@ -292,6 +224,79 @@ export const abi = [
 		name: 'updateTitle',
 		outputs: [],
 		stateMutability: 'nonpayable',
+		type: 'function',
+	},
+	{
+		inputs: [],
+		name: 'getTodos',
+		outputs: [
+			{
+				components: [
+					{
+						internalType: 'string',
+						name: 'title',
+						type: 'string',
+					},
+					{
+						internalType: 'string',
+						name: 'description',
+						type: 'string',
+					},
+					{
+						internalType: 'uint256',
+						name: 'id',
+						type: 'uint256',
+					},
+					{
+						internalType: 'uint256',
+						name: 'createdTime',
+						type: 'uint256',
+					},
+					{
+						internalType: 'uint256',
+						name: 'lastUpdated',
+						type: 'uint256',
+					},
+					{
+						internalType: 'uint256',
+						name: 'targetTime',
+						type: 'uint256',
+					},
+					{
+						internalType: 'uint8',
+						name: 'priority',
+						type: 'uint8',
+					},
+					{
+						internalType: 'bool',
+						name: 'status',
+						type: 'bool',
+					},
+					{
+						internalType: 'bool',
+						name: 'isPresent',
+						type: 'bool',
+					},
+				],
+				internalType: 'struct TodoList.Todo[]',
+				name: '',
+				type: 'tuple[]',
+			},
+		],
+		stateMutability: 'view',
+		type: 'function',
+	},
+	{
+		inputs: [],
+		name: 'getTodosCount',
+		outputs: [
+			{
+				internalType: 'uint256',
+				name: '',
+				type: 'uint256',
+			},
+		],
+		stateMutability: 'view',
 		type: 'function',
 	},
 ]
