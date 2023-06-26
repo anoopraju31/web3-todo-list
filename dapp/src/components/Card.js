@@ -1,7 +1,8 @@
 import React from 'react'
 import { FaRegEdit } from 'react-icons/fa'
+import { cardBackground } from '../utiils/cardBackground'
 
-const Card = ({ title, description, createdTime, targetTime }) => {
+const Card = ({ title, description, createdTime, targetTime, priority }) => {
 	const createDate = new Date(createdTime * 1000)
 	const targetDate = new Date(targetTime * 1000)
 	const create = `${createDate.getDate()}/${
@@ -12,7 +13,10 @@ const Card = ({ title, description, createdTime, targetTime }) => {
 	}/${targetDate.getFullYear()}`
 
 	return (
-		<div className='relative w-full p-4  border border-gray-200 rounded shadow  dark:border-gray-700 bg-green-800 bg-opacity-50'>
+		<div
+			className={`relative w-full p-4  border border-gray-200 rounded shadow  dark:border-gray-700 ${
+				cardBackground[priority - 1]
+			}`}>
 			<div className='p-2 absolute top-2 right-2 flex items-center justify-center round_border text-white hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'>
 				<FaRegEdit size={18} />
 			</div>

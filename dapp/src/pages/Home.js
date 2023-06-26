@@ -24,6 +24,7 @@ const Home = () => {
 						description={todo.description}
 						createdTime={Number(todo.createdTime._hex)}
 						targetTime={Number(todo.targetTime._hex)}
+						priority={todo.priority}
 					/>
 				))}
 			</div>
