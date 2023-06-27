@@ -1,6 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import {
+	getDefaultWallets,
+	RainbowKitProvider,
+	darkTheme,
+	lightTheme,
+} from '@rainbow-me/rainbowkit'
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
@@ -34,7 +39,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
 	<React.StrictMode>
 		<WagmiConfig client={wagmiClient}>
-			<RainbowKitProvider chains={chains} coolMode>
+			<RainbowKitProvider
+				chains={chains}
+				theme={localStorage.theme === 'dark' ? darkTheme() : lightTheme()}
+				coolMode>
 				<Provider store={store}>
 					<BrowserRouter>
 						<App />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useAccount } from 'wagmi'
@@ -43,7 +43,7 @@ const Navbar = () => {
 	useEffect(() => {
 		if (theme === 'dark') document.documentElement.classList.add(theme)
 		else document.documentElement.classList.remove('dark')
-		localStorage.theme = 'dark'
+		localStorage.theme = theme
 	}, [theme])
 
 	return (
@@ -84,31 +84,30 @@ const Navbar = () => {
 					className={`items-center justify-between w-full ${
 						currentWidth < 768 && open ? 'block' : 'hidden'
 					} md:flex md:w-auto md:order-1`}>
-					<ul className='flex flex-col gap-4 md:gap-0 p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-6 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
+					<ul className='flex flex-col md:flex-row items-end md:items-center gap-4 md:gap-0 mt-4 md:mt-0 md:space-x-6 font-medium'>
 						{/* Add Todo Button */}
 						{isConnected && (
 							<li>
-								<button
-									type='button'
+								<div
 									onClick={handleClick}
-									className='w-full md:w-[102px] flex-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-[10px] text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+									className='w-[150px] px-5 py-2 flex-1 border border-blue-700 dark:border-blue-600 rounded-lg bg-blue-700 hover:bg-transparent dark:bg-blue-600 dark:hover:bg-transparent  text-white text-sm font-medium text-center'>
 									Add Todo
-								</button>
+								</div>
 							</li>
 						)}
 
 						{/* Theme Button */}
-						<li>
+						{/* <li>
 							<div
 								// type='button'
 								onClick={handleTheme}
 								className='w-full md:w-[102px] flex-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-[10px] text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
 								Theme
 							</div>
-						</li>
+						</li> */}
 
 						{/* Wallet Connect Button */}
-						<li className='w-full'>
+						<li>
 							<ConnectButton chainStatus='full' showBalance={false} />
 						</li>
 					</ul>
