@@ -13,6 +13,7 @@ const useTodo = () => {
 
 	const getTodos = async () => {
 		const data = await contract.getTodos()
+		console.log('data', data)
 		setTodos(data)
 	}
 
@@ -32,7 +33,7 @@ const useTodo = () => {
 		eventName: 'TitleUpdate',
 		listener(log) {
 			console.log(log)
-			getTodos()
+			setTimeout(getTodos, 15000)
 		},
 	})
 
@@ -42,7 +43,7 @@ const useTodo = () => {
 		eventName: 'DescriptionUpdate',
 		listener(log) {
 			console.log(log)
-			getTodos()
+			setTimeout(getTodos, 15000)
 		},
 	})
 
@@ -52,7 +53,7 @@ const useTodo = () => {
 		eventName: 'TargetTimeUpdate',
 		listener(log) {
 			console.log(log)
-			getTodos()
+			setTimeout(getTodos, 15000)
 		},
 	})
 
@@ -62,7 +63,7 @@ const useTodo = () => {
 		eventName: 'PriorityUpdate',
 		listener(log) {
 			console.log(log)
-			getTodos()
+			setTimeout(getTodos, 15000)
 		},
 	})
 
@@ -72,7 +73,7 @@ const useTodo = () => {
 		eventName: 'StatusToggle',
 		listener(log) {
 			console.log(log)
-			getTodos()
+			setTimeout(getTodos, 15000)
 		},
 	})
 
