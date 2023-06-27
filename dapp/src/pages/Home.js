@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAccount } from 'wagmi'
 import { useNavigate } from 'react-router-dom'
@@ -48,13 +48,7 @@ const Home = () => {
 				onClose={() => {
 					dispatch(toggleModel(false))
 				}}>
-				{cardView ? (
-					<div className='h-screen flex justify-center items-center bg-transparent'>
-						<Card {...data} />
-					</div>
-				) : (
-					<Form />
-				)}
+				{cardView ? <Card {...data} /> : <Form />}
 			</Modal>
 		</div>
 	)
