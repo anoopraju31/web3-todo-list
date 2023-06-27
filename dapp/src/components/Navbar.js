@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useWidth } from '../hooks'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { addTodoToEdit, switchToCreateForm } from '../features/formSlice'
+import {
+	addTodoToEdit,
+	switchToCreateForm,
+	toggleModel,
+} from '../features/formSlice'
 
 const Navbar = () => {
 	const [open, setOpen] = useState(false)
@@ -21,6 +25,7 @@ const Navbar = () => {
 				status: true,
 			}),
 		)
+		dispatch(toggleModel(true))
 	}
 	return (
 		<nav className='bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600'>

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
 	isEditForm: false,
+	modelOpen: false,
 	todo: {
 		id: 0,
 		title: '',
@@ -25,9 +26,16 @@ export const formSlice = createSlice({
 		addTodoToEdit: (state, action) => {
 			state.todo = action.payload
 		},
+		toggleModel: (state, action) => {
+			state.modelOpen = action.payload
+		},
 	},
 })
 
-export const { switchToCreateForm, switchToEditForm, addTodoToEdit } =
-	formSlice.actions
+export const {
+	switchToCreateForm,
+	switchToEditForm,
+	addTodoToEdit,
+	toggleModel,
+} = formSlice.actions
 export default formSlice.reducer

@@ -2,7 +2,11 @@ import React from 'react'
 import { FaRegEdit } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { cardBackground } from '../utiils/cardBackground'
-import { addTodoToEdit, switchToEditForm } from '../features/formSlice'
+import {
+	addTodoToEdit,
+	switchToEditForm,
+	toggleModel,
+} from '../features/formSlice'
 
 const Card = ({
 	id,
@@ -36,6 +40,7 @@ const Card = ({
 				status,
 			}),
 		)
+		dispatch(toggleModel(true))
 	}
 
 	return (

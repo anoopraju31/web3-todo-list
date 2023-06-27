@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { MdOutlineClose } from 'react-icons/md'
 import Datepicker from 'react-tailwindcss-datepicker'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import useEditTodo from '../hooks/useEditTodo'
 import { getTimestamp } from '../utiils/time'
 import { useAddTodo } from '../hooks'
+import { toggleModel } from '../features/formSlice'
 
 const Form = () => {
 	const [id, setId] = useState(0)
@@ -21,11 +22,13 @@ const Form = () => {
 	const data = useSelector((state) => state.form.todo)
 	const { editTodo } = useEditTodo()
 	const { addTodo } = useAddTodo()
+	const dispatch = useDispatch()
 
 	const handleValueChange = (newValue) => {
 		setTargetDate(newValue)
 	}
 
+	// submit
 	const handleSubmit = () => {
 		let date = new Date(targetDate.startDate)
 		let targetTime = getTimestamp(date)
@@ -44,6 +47,11 @@ const Form = () => {
 			endDate: null,
 		})
 		setStatus(true)
+	}
+
+	// handle close
+	const handleClose = () => {
+		dispatch(toggleModel(false))
 	}
 
 	useEffect(() => {
@@ -67,6 +75,7 @@ const Form = () => {
 			{/* Close Button */}
 			<button
 				type='button'
+				onClick={handleClose}
 				className='bg-white dark:bg-slate-800 hover:bg-transparent dark:hover:bg-transparent border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white absolute top-4 right-4  flex items-center p-2 ml-3 text-sm rounded-full outline-none'>
 				<MdOutlineClose size={22} />
 			</button>

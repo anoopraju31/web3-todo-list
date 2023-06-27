@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAccount, useSigner } from 'wagmi'
 import useTodo from '../hooks/useTodo'
 import { Card, Form } from '../components'
+import { Modal } from 'flowbite-react'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
 	const navigate = useNavigate()
 	const { isConnected } = useAccount()
 	const { data: signer } = useSigner()
 	const todos = useTodo()
+	const modelOpen = useSelector((state) => state.form.modelOpen)
 
 	useEffect(() => {
 		if (!isConnected) navigate('/connect')
@@ -30,8 +33,12 @@ const Home = () => {
 					/>
 				))}
 			</div>
-
-			<Form />
+			<Modal
+				className='h-screen backdrop-blur-sm '
+				show={modelOpen}
+				onClose={modelOpen}>
+				<Form />
+			</Modal>
 		</div>
 	)
 }
