@@ -23,7 +23,7 @@ const useTodo = () => {
 		eventName: 'TodoCreate',
 		listener(log) {
 			// console.log(log)
-			getTodos()
+			setTimeout(getTodos, 15000)
 		},
 	})
 

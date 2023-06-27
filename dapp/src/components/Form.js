@@ -23,20 +23,27 @@ const Form = () => {
 	const { addTodo } = useAddTodo()
 
 	const handleValueChange = (newValue) => {
-		// console.log('old target date ', targetDate)
-		// console.log('target date change', newValue)
 		setTargetDate(newValue)
 	}
 
 	const handleSubmit = () => {
 		let date = new Date(targetDate.startDate)
-		// console.log(`${isEditForm ? 'edit ' : 'create '} ${targetDate.startDate}`)
 		let targetTime = getTimestamp(date)
-		// console.log('targetTime', targetTime)
 		let todo = { id, title, description, targetTime, priority, status }
-		// console.log(todo)
+
 		if (isEditForm) editTodo(todo)
 		else addTodo(title, description, targetTime, priority)
+
+		// clear form
+		setId(0)
+		setTitle('')
+		setDescription('')
+		setPriority(0)
+		setTargetDate({
+			startDate: null,
+			endDate: null,
+		})
+		setStatus(true)
 	}
 
 	useEffect(() => {
@@ -49,7 +56,6 @@ const Form = () => {
 			endDate: data.targetTime !== null ? new Date(data.targetTime) : null,
 		})
 		setStatus(data.status)
-		// console.log(data.targetTime)
 	}, [isEditForm, data])
 
 	return (
