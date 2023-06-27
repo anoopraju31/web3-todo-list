@@ -1,7 +1,7 @@
-import React from 'react'
 import { FaRegEdit } from 'react-icons/fa'
 import { MdOutlineClose } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { cardBackground } from '../utiils/cardBackground'
 import {
 	addTodoToEdit,
