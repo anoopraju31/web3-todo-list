@@ -47,7 +47,7 @@ const Card = ({
 		<div
 			className={`relative w-full p-4  border border-gray-200 rounded shadow  dark:border-gray-700 ${
 				cardBackground[priority - 1]
-			}`}>
+			} ${status && 'line-through'}`}>
 			<div
 				className='p-2 absolute top-2 right-2 flex items-center justify-center round_border text-white hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'
 				onClick={handleEdit}>

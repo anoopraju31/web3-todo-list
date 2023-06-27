@@ -47,6 +47,9 @@ const Form = () => {
 			endDate: null,
 		})
 		setStatus(true)
+
+		// close model
+		dispatch(toggleModel(false))
 	}
 
 	// handle close
