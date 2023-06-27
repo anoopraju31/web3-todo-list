@@ -21,7 +21,7 @@ const useEditTodo = () => {
 			if (title !== data.title) await contract.updateTitle(id, title)
 			if (description !== data.description)
 				await contract.updateDescription(id, description)
-			if (targetTime !== getTimestamp(data.targetTime))
+			if (targetTime !== getTimestamp(new Date(data.targetTime)))
 				await contract.updateTargetTime(id, targetTime)
 			if (priority !== data.priority)
 				await contract.updatePriority(id, priority)

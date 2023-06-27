@@ -18,9 +18,9 @@ const Card = ({
 	const create = `${createDate.getDate()}/${
 		createDate.getMonth() + 1
 	}/${createDate.getFullYear()}`
-	const target = `${targetDate.getDate()}/${
+	const target = `${
 		targetDate.getMonth() + 1
-	}/${targetDate.getFullYear()}`
+	}/${targetDate.getDate()}/${targetDate.getFullYear()}`
 	const dispatch = useDispatch()
 
 	const handleEdit = () => {
@@ -31,7 +31,7 @@ const Card = ({
 				id,
 				title,
 				description,
-				targetTime: targetDate,
+				targetTime: target,
 				priority,
 				status,
 			}),

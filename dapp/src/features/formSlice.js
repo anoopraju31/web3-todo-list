@@ -7,7 +7,7 @@ const initialState = {
 		title: '',
 		description: '',
 		priority: 0,
-		targetTime: new Date(),
+		targetTime: null,
 		status: true,
 	},
 }

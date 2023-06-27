@@ -4,6 +4,7 @@ import Datepicker from 'react-tailwindcss-datepicker'
 import { useSelector } from 'react-redux'
 import useEditTodo from '../hooks/useEditTodo'
 import { getTimestamp } from '../utiils/time'
+import { useAddTodo } from '../hooks'
 
 const Form = () => {
 	const [id, setId] = useState(0)
@@ -19,34 +20,36 @@ const Form = () => {
 	const isEditForm = useSelector((state) => state.form.isEditForm)
 	const data = useSelector((state) => state.form.todo)
 	const { editTodo } = useEditTodo()
+	const { addTodo } = useAddTodo()
 
 	const handleValueChange = (newValue) => {
-		console.log(newValue)
+		// console.log('old target date ', targetDate)
+		// console.log('target date change', newValue)
 		setTargetDate(newValue)
 	}
 
 	const handleSubmit = () => {
-		let targetTime = getTimestamp(targetDate.startDate)
-		// console.log(targetDate.startDate)
+		let date = new Date(targetDate.startDate)
+		// console.log(`${isEditForm ? 'edit ' : 'create '} ${targetDate.startDate}`)
+		let targetTime = getTimestamp(date)
+		// console.log('targetTime', targetTime)
 		let todo = { id, title, description, targetTime, priority, status }
 		// console.log(todo)
-		editTodo(todo)
+		if (isEditForm) editTodo(todo)
+		else addTodo(title, description, targetTime, priority)
 	}
 
 	useEffect(() => {
-		if (isEditForm === true) {
-			setId(data.id)
-			setTitle(data.title)
-			setDescription(data.description)
-			setPriority(data.priority)
-			setTargetDate({
-				startDate: data.targetTime,
-				endDate: data.targetTime,
-			})
-			setStatus(data.status)
-
-			// console.log(data)
-		}
+		setId(data.id)
+		setTitle(data.title)
+		setDescription(data.description)
+		setPriority(data.priority)
+		setTargetDate({
+			startDate: data.targetTime !== null ? new Date(data.targetTime) : null,
+			endDate: data.targetTime !== null ? new Date(data.targetTime) : null,
+		})
+		setStatus(data.status)
+		// console.log(data.targetTime)
 	}, [isEditForm, data])
 
 	return (

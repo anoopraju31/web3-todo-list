@@ -1,11 +1,27 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useWidth } from '../hooks'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { addTodoToEdit, switchToCreateForm } from '../features/formSlice'
 
 const Navbar = () => {
 	const [open, setOpen] = useState(false)
 	const currentWidth = useWidth()
+	const dispatch = useDispatch()
 
+	const handleClick = () => {
+		dispatch(switchToCreateForm())
+		dispatch(
+			addTodoToEdit({
+				id: 0,
+				title: '',
+				description: '',
+				priority: 0,
+				targetTime: null,
+				status: true,
+			}),
+		)
+	}
 	return (
 		<nav className='bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600'>
 			<div className='max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-4 px-8 md:px-16'>
@@ -44,6 +60,7 @@ const Navbar = () => {
 						<li>
 							<button
 								type='button'
+								onClick={handleClick}
 								className='w-full md:w-[102px] flex-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-[10px] text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
 								Add Todo
 							</button>
