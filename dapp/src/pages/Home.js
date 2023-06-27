@@ -23,7 +23,7 @@ const Home = () => {
 	}, [isConnected, navigate])
 
 	return (
-		<div className='pt-20 px-0 md:px-8 min-h-screen bg-white dark:bg-gray-900 '>
+		<div className='pt-20 px-0 md:px-8 min-h-[var(--body-height)] bg-white dark:bg-gray-900 '>
 			{/* Cards */}
 			<div className='max-w-screen-2xl mx-auto pt-4 px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-4'>
 				{todos?.map((todo) => (

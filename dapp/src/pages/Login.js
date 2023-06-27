@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAccount, useSigner } from 'wagmi'
+import { useAccount } from 'wagmi'
 
 const Login = () => {
 	const navigate = useNavigate()
 	const { isConnected } = useAccount()
-	const { data: signer } = useSigner()
 
 	useEffect(() => {
 		if (isConnected) navigate('/')
-	}, [signer])
+	}, [isConnected, navigate])
 
-	return <div>Login</div>
+	return (
+		<div className='pt-20 px-0 md:px-8 min-h-[var(--body-height)] bg-white dark:bg-gray-900 '></div>
+	)
 }
 
 export default Login
