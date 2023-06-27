@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useAccount } from 'wagmi'
 import { useNavigate } from 'react-router-dom'
 import { Modal } from 'flowbite-react'
 
 import { useTodo } from '../hooks'
 import { Card, Form } from '../components'
+import { toggleModel } from '../features/formSlice'
 
 const Home = () => {
 	const navigate = useNavigate()
@@ -14,6 +15,7 @@ const Home = () => {
 	const cardView = useSelector((state) => state.form.cardView)
 	const data = useSelector((state) => state.form.todo)
 	const modelOpen = useSelector((state) => state.form.modelOpen)
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		// Not connected redirected to login page
@@ -40,9 +42,12 @@ const Home = () => {
 
 			{/* Model */}
 			<Modal
+				dismissible
 				className='h-screen backdrop-blur-sm '
 				show={modelOpen}
-				onClose={modelOpen}>
+				onClose={() => {
+					dispatch(toggleModel(false))
+				}}>
 				{cardView ? (
 					<div className='h-screen flex justify-center items-center bg-transparent'>
 						<Card {...data} />

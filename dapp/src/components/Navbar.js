@@ -33,12 +33,12 @@ const Navbar = () => {
 		dispatch(toggleModel(true))
 	}
 
-	// theme change
-	const handleTheme = () => {
-		setTheme((prev) => {
-			return prev === 'dark' ? 'light' : 'dark'
-		})
-	}
+	// // theme change
+	// const handleTheme = () => {
+	// 	setTheme((prev) => {
+	// 		return prev === 'dark' ? 'light' : 'dark'
+	// 	})
+	// }
 
 	useEffect(() => {
 		if (theme === 'dark') document.documentElement.classList.add(theme)
