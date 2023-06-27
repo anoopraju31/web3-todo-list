@@ -11,6 +11,9 @@ const Home = () => {
 	const { isConnected } = useAccount()
 	const { data: signer } = useSigner()
 	const todos = useTodo()
+
+	const cardView = useSelector((state) => state.form.cardView)
+	const data = useSelector((state) => state.form.todo)
 	const modelOpen = useSelector((state) => state.form.modelOpen)
 
 	useEffect(() => {
@@ -40,7 +43,13 @@ const Home = () => {
 				className='h-screen backdrop-blur-sm '
 				show={modelOpen}
 				onClose={modelOpen}>
-				<Form />
+				{cardView ? (
+					<div className='h-screen bg-transparent'>
+						<Card {...data} />
+					</div>
+				) : (
+					<Form />
+				)}
 			</Modal>
 		</div>
 	)

@@ -3,11 +3,13 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
 	isEditForm: false,
 	modelOpen: false,
+	cardView: false,
 	todo: {
 		id: 0,
 		title: '',
 		description: '',
 		priority: 0,
+		createdTime: null,
 		targetTime: null,
 		status: true,
 	},
@@ -29,6 +31,9 @@ export const formSlice = createSlice({
 		toggleModel: (state, action) => {
 			state.modelOpen = action.payload
 		},
+		toggleCardView: (state, action) => {
+			state.cardView = action.payload
+		},
 	},
 })
 
@@ -37,5 +42,6 @@ export const {
 	switchToEditForm,
 	addTodoToEdit,
 	toggleModel,
+	toggleCardView,
 } = formSlice.actions
 export default formSlice.reducer
