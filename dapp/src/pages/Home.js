@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAccount, useSigner } from 'wagmi'
-import useTodo from '../hooks/useTodo'
-import { Card, Form } from '../components'
-import { Modal } from 'flowbite-react'
 import { useSelector } from 'react-redux'
+import { useAccount } from 'wagmi'
+import { useNavigate } from 'react-router-dom'
+import { Modal } from 'flowbite-react'
+
+import { useTodo } from '../hooks'
+import { Card, Form } from '../components'
 
 const Home = () => {
 	const navigate = useNavigate()
 	const { isConnected } = useAccount()
-	const { data: signer } = useSigner()
 	const todos = useTodo()
-
 	const cardView = useSelector((state) => state.form.cardView)
 	const data = useSelector((state) => state.form.todo)
 	const modelOpen = useSelector((state) => state.form.modelOpen)
 
 	useEffect(() => {
+		// Not connected redirected to login page
 		if (!isConnected) navigate('/connect')
-	}, [signer])
+	}, [isConnected, navigate])
 
 	return (
 		<div className='pt-20 px-0 md:px-8 min-h-screen bg-white dark:bg-gray-900 '>
@@ -44,7 +44,7 @@ const Home = () => {
 				show={modelOpen}
 				onClose={modelOpen}>
 				{cardView ? (
-					<div className='h-screen bg-transparent'>
+					<div className='h-screen flex justify-center items-center bg-transparent'>
 						<Card {...data} />
 					</div>
 				) : (
